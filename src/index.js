@@ -4,6 +4,7 @@ import { argv, chdir, exit, stdin, stdout } from 'node:process';
 import * as readline from 'readline';
 import * as handlers from './handlers/index.js';
 import displayCurrentDirectory from './helpers/displayCurrentDirectory.js';
+import {colorize} from "./helpers/colorize.js";
 
 chdir(homedir());
 
@@ -16,7 +17,7 @@ const args = Object.fromEntries(
 
 const username = args['--username'] || 'stranger';
 
-console.log(`Welcome to the File Manager, ${username}!`);
+console.log(colorize.pink(`Welcome to the File Manager, ${username}!`));
 displayCurrentDirectory();
 
 const eventEmitter = new EventEmitter().setMaxListeners(0);
@@ -33,6 +34,6 @@ const rl = readline.createInterface({
 rl.on('line', handlers.line.bind(rl, eventEmitter))
   .on('SIGINT', () => rl.close())
   .on('close', () => {
-    console.log(`Thank you for using File Manager, ${username}!`);
+    console.log(colorize.pink(`Thank you for using File Manager, ${username}!`));
     setTimeout(() => exit(0), 100);
-  });
+  })

@@ -1,4 +1,6 @@
-export const line = async (eventEmitter, line) => {
+import {exit} from "node:process";
+
+export const line = async function(eventEmitter, line) {
   try {
     line = line.trim();
     let [command, ...args] = line.split(' ');

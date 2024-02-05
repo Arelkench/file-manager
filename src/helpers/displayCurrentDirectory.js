@@ -1,5 +1,6 @@
 import { cwd } from 'node:process'
+import {colorize} from "./colorize.js";
 
 export default function displayCurrentDirectory() {
-    console.info(`Your current directory is ${cwd()}`)
+    console.info(colorize.blue(`Your current directory is ${cwd()}`))
 }
